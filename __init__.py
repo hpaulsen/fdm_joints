@@ -523,7 +523,7 @@ class OBJECT_OT_fdmlink(Operator):
 
     def execute(self, context):
 
-        add_3d_joint(self, context)
+        add_FDMLink(self, context)
 
         return {'FINISHED'}
 
