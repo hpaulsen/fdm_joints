@@ -1,12 +1,12 @@
 schema_version = "1.0.0"
 
-id = "fdm_links"
+id = "fdm_joints"
 version = "0.1.2"
-name = "FDM Links"
-tagline = "Easy and durable links for flexible/articulated 3d-printed toys"
+name = "FDM Joints"
+tagline = "Easy and durable joints for flexible/articulated 3d-printed toys"
 maintainer = "HPaulsen"
 type = "add-on"
-website = "https://github.com/hpaulsen/fdm_links/"
+website = "https://github.com/hpaulsen/fdm_joints/"
 tags = ["Object"]
 blender_version_min = "4.5.0"
 license = [
