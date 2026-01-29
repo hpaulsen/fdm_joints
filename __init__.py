@@ -5,7 +5,7 @@ from bpy.types import Operator
 from bpy.props import FloatVectorProperty, EnumProperty, FloatProperty, IntProperty
 from mathutils import Vector, Matrix, Euler
 
-class HCP_3dJoint:
+class HPaulsen_FDMJoint:
     def __init__(self,type,size,up_angle,down_angle,horizontal_angle,clearance,resolution):
         self.name = "3d Joint"
         self.type = type
@@ -334,7 +334,7 @@ class HCP_3dJoint:
         
         return self.create_obj(verts,faces)
     
-    def joint1side(self):
+    def link1side(self):
         a = self.add_arm_space()
         b = self.add_separator(self.separator_y,self.separator_outer_r,self.print_angle,self.print_angle,self.print_angle)
         self.apply_boolean(a,b,"UNION")
@@ -370,7 +370,7 @@ class HCP_3dJoint:
         bpy.ops.object.editmode_toggle()
         return a
     
-    def joint2side(self):
+    def link2side(self):
         a_min = min(self.bendable_angle,self.up_angle,self.down_angle)
         
         # figure out (or estimate) the distance between the two joint ends
@@ -434,23 +434,23 @@ class HCP_3dJoint:
         bpy.ops.object.editmode_toggle()
         return a
     
-    def joint(self):
-        ret = self.joint1side() if self.type == "1SIDE" else self.joint2side()
+    def link(self):
+        ret = self.link1side() if self.type == "1SIDE" else self.link2side()
         ret.select_set(True)
         bpy.context.view_layer.objects.active = ret
         return ret
         
 
-def add_3d_joint(self, context):
-    j = HCP_3dJoint(self.type,self.socket_width,self.up_angle,self.down_angle,self.horizontal_angle,self.clearance,self.resolution)
-    obj = j.joint()
+def add_FDMLink(self, context):
+    j = HPaulsen_FDMLink(self.type,self.socket_width,self.up_angle,self.down_angle,self.horizontal_angle,self.clearance,self.resolution)
+    obj = j.link()
     obj.location = obj.location+Vector(self.location)
     obj.rotation_euler = Vector(self.rotation)
 
-class OBJECT_OT_joint(Operator):
+class OBJECT_OT_fdmlink(Operator):
     """Create a new Joint"""
-    bl_idname = "mesh.3djoint"
-    bl_label = "Add 3d Joint"
+    bl_idname = "mesh.fdmlink"
+    bl_label = "Add FDM Link"
     bl_options = {'REGISTER', 'UNDO'}
     
     type: EnumProperty(
@@ -532,14 +532,14 @@ class OBJECT_OT_joint(Operator):
 def joint_button(self, context):
     self.layout.operator(
         OBJECT_OT_joint.bl_idname,
-        text="3d Joint",
+        text="FDM Link",
         icon='PLUGIN')
 
 # This allows you to right click on a button and link to documentation
 def joint_manual_map():
-    url_manual_prefix = "https://docs.blender.org/manual/en/latest/"
+    url_manual_prefix = "https://github.com/hpaulsen/fdm_links/"
     url_manual_mapping = (
-        ("bpy.ops.mesh.3djoint", "scene_layout/object/types.html"),
+        ("bpy.ops.mesh.FDMLink", "scene_layout/object/types.html"),
     )
     return url_manual_prefix, url_manual_mapping
 
