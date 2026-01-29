@@ -1,0 +1,14 @@
+schema_version = "1.0.0"
+
+id = "fdm_links"
+version = "0.1.0"
+name = "FDM Links"
+tagline = "Easy and durable links for flexible/articulated 3d-printed toys"
+maintainer = "HPaulsen"
+type = "add-on"
+website = "https://github.com/hpaulsen/fdm_links/"
+tags = ["Object"]
+blender_version_min = "4.5.0"
+license = [
+  "SPDX:GPL-3.0-or-later",
+]
