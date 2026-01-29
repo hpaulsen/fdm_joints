@@ -1,7 +1,7 @@
 schema_version = "1.0.0"
 
 id = "fdm_links"
-version = "0.1.1"
+version = "0.1.2"
 name = "FDM Links"
 tagline = "Easy and durable links for flexible/articulated 3d-printed toys"
 maintainer = "HPaulsen"
