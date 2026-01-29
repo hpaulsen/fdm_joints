@@ -529,14 +529,14 @@ class OBJECT_OT_fdmlink(Operator):
 
 # Registration
 
-def link_button(self, context):
+def fdmlink_button(self, context):
     self.layout.operator(
         OBJECT_OT_fdmlink.bl_idname,
         text="FDM Link",
         icon='PLUGIN')
 
 # This allows you to right click on a button and link to documentation
-def joint_manual_map():
+def fdmlink_manual_map():
     url_manual_prefix = "https://github.com/hpaulsen/fdm_links/"
     url_manual_mapping = (
         ("bpy.ops.mesh.FDMLink", "scene_layout/object/types.html"),
@@ -545,13 +545,13 @@ def joint_manual_map():
 
 def register():
     bpy.utils.register_class(OBJECT_OT_fdmlink)
-    bpy.utils.register_manual_map(joint_manual_map)
-    bpy.types.VIEW3D_MT_mesh_add.append(joint_button)
+    bpy.utils.register_manual_map(fdmlink_manual_map)
+    bpy.types.VIEW3D_MT_mesh_add.append(fdmlink_button)
 
 def unregister():
     bpy.utils.unregister_class(OBJECT_OT_fdmlink)
-    bpy.utils.unregister_manual_map(joint_manual_map)
-    bpy.types.VIEW3D_MT_mesh_add.remove(joint_button)
+    bpy.utils.unregister_manual_map(fdmlink_manual_map)
+    bpy.types.VIEW3D_MT_mesh_add.remove(fdmlink_button)
 
 if __name__ == "__main__":
     register()
