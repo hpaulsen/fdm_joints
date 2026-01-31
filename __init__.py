@@ -38,7 +38,7 @@ class HPaulsen_FDMJoint:
         if self.bendable_angle > horizontal_angle:
             self.bendable_angle = horizontal_angle
         self.bottom_r = self.axle_x-self.overlap
-        self.raise_z = 1.2*self.axle_major_r+self.v_clearance
+        self.raise_z = self.axle_major_r+self.v_clearance+max(0,0.2*(self.axle_major_r-3.0)) # keep it as low as possible when <= 3mm diameter
 
     def loopx(self,verts,r,x):
         verts += [(x,r*math.sin(i*self.a_step),r*math.cos(i*self.a_step)) for i in range(self.resolution)]
