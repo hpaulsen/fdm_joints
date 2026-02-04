@@ -7,7 +7,7 @@ from mathutils import Vector, Matrix, Euler
 
 class HPaulsen_FDMJoint:
     def __init__(self,type,size,up_angle,down_angle,horizontal_angle,clearance,resolution):
-        self.name = "3d Joint"
+        self.name = "FDM Joint"
         self.type = type
         self.size = size # min size ~ 2.9mm
         self.resolution = resolution
@@ -380,8 +380,8 @@ class HPaulsen_FDMJoint:
     def joint2side(self):
         a_min = min(self.bendable_angle,self.up_angle,self.down_angle)
         
-        y = self.separator_y
-        y_offset = Vector((0,y,0))#+self.clearance/4,0))
+        y = self.separator_y+self.clearance/2
+        y_offset = Vector((0,y,0))
 
         rot180 = Vector((0,0,math.pi))
         a = self.add_separator(self.separator_y,self.separator_outer_r,self.bendable_angle,self.up_angle,self.down_angle)
